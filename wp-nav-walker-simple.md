@@ -18,7 +18,12 @@ class  Div_Nav_Walker  extends  Walker_Nav_Menu {
 	}
 
 	function  start_el(&$output, $item, $depth=0, $args=array(), $id = 0) {
-		$output  .=  '<a href="'.$item->url.'">'.$item->title;
+		// active menu
+		$classes = "";
+		if(array_search('current-menu-item', $item->classes) != 0){
+		   $classes .= " active";
+		}
+		$output  .=  '<a class="'.$classes.'" href="'.$item->url.'">'.$item->title;
 	}
 	
 	function  end_el(&$output, $item, $depth=0, $args=array()) {
