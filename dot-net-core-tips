@@ -1,0 +1,7 @@
+<div dir="rtl">
+همسان سازی پارمترهای دریافتی و ارسالی 
+</div>
+```
+services.AddControllers()
+            .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
+```
