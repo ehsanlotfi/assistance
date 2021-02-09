@@ -1,7 +1,7 @@
 ## request forkjoin response single
 
 ```
-import { forkJoin, from, of } from 'rxjs';
+import { Observable, forkJoin, from, of } from 'rxjs';
 import { mergeMap } from "rxjs/operators";
 ```
 
