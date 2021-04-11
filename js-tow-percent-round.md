@@ -1,5 +1,5 @@
 2 percent round
 
 ```
-parseFloat((+this.y).toFixed(2))
+parseFloat((2.02001225).toFixed(2))
 ```
