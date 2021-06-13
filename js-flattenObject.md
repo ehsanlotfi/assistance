@@ -24,8 +24,8 @@ flattenObject(obj, path = '', keys = []) {
 
 ## Example 2
 ```
-var flatten = (a) => {  
-  return a.reduce(function (flattened, item) {
+var flatten = (arr) => {  
+  return arr.reduce(function (flattened, item) {
     return flattened
       .concat([_.omit(item, "children")])
       .concat(item.children ? myFlat(item.children) : []);
