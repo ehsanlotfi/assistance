@@ -22,7 +22,7 @@ flattenObject(obj, path = '', keys = []) {
   }
 ```
 
-#Example 2
+## Example 2
 ```
 var flatten = (a) => {  
   return a.reduce(function (flattened, item) {
