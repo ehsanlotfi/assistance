@@ -1,5 +1,6 @@
 ### FLATTEN OBJECT JAVASCRIPT
 
+## Example 1
 ```
 flattenObject(obj, path = '', keys = []) {
 
@@ -19,4 +20,15 @@ flattenObject(obj, path = '', keys = []) {
     }, {});
 
   }
+```
+
+#Example 2
+```
+var flatten = (a) => {  
+  return a.reduce(function (flattened, item) {
+    return flattened
+      .concat([_.omit(item, "children")])
+      .concat(item.children ? myFlat(item.children) : []);
+  }, []);
+}
 ```
