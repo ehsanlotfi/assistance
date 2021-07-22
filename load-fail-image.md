@@ -1,1 +1,3 @@
-<img onerror="this.src='fail.png'" src="src.png" />
+```
+  <img onerror="this.src='fail.png'" src="src.png" />
+```
