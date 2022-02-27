@@ -1,0 +1,28 @@
+const { promises: { readdir, rename } } = require('fs')
+
+
+const getDirectories = async () => {
+    var Directories = (await readdir(__dirname, { withFileTypes: true }))
+        .filter(dirent => dirent.isDirectory())
+        .map(dirent => dirent.name);
+
+
+
+
+    Directories.forEach(async (dir) => {
+        var FilesInDirectories = (await readdir(`${__dirname}\\${dir}\\`, { withFileTypes: true }))
+            .filter(dirent => dirent.isFile())
+            .filter(dirent => dirent.name.includes('.mp4'))
+            .map(dirent => dirent.name);
+
+        FilesInDirectories.forEach(async (file) => {
+            await rename(`${__dirname}\\${dir}\\${file}`, `${__dirname}\\${file}`, function (err) {
+                if (err) throw err;
+                console.log('Directory Moved!');
+            });
+        });
+    })
+
+};
+
+getDirectories();
