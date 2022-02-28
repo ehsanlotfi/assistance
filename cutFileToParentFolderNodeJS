@@ -1,8 +1,17 @@
-const { promises: { readdir, rename } } = require('fs')
+const { promises: { readdir, rename, lstat } } = require('fs')
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
 
+readline.question(`Enter the folder address:`, folder => {
+  getDirectories(folder);
+  readline.close();
+})
 
-const getDirectories = async () => {
-    var Directories = (await readdir(__dirname, { withFileTypes: true }))
+const getDirectories = async (_folder) => {
+    console.log('!!!');
+    var Directories = (await readdir(_folder, { withFileTypes: true }))
         .filter(dirent => dirent.isDirectory())
         .map(dirent => dirent.name);
 
@@ -10,13 +19,13 @@ const getDirectories = async () => {
 
 
     Directories.forEach(async (dir) => {
-        var FilesInDirectories = (await readdir(`${__dirname}\\${dir}\\`, { withFileTypes: true }))
+        var FilesInDirectories = (await readdir(`${_folder}\\${dir}\\`, { withFileTypes: true }))
             .filter(dirent => dirent.isFile())
             .filter(dirent => dirent.name.includes('.mp4'))
             .map(dirent => dirent.name);
 
         FilesInDirectories.forEach(async (file) => {
-            await rename(`${__dirname}\\${dir}\\${file}`, `${__dirname}\\${file}`, function (err) {
+            await rename(`${_folder}\\${dir}\\${file}`, `${_folder}\\${file}`, function (err) {
                 if (err) throw err;
                 console.log('Directory Moved!');
             });
@@ -24,5 +33,3 @@ const getDirectories = async () => {
     })
 
 };
-
-getDirectories();
