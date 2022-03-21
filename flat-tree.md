@@ -1,5 +1,5 @@
 
-# Flat To Tree
+# Flatten To Tree
 ```
 function flatToTree(list, entity_key, parent_key) {
     var map = {}, node, roots = [], i;
@@ -21,9 +21,9 @@ function flatToTree(list, entity_key, parent_key) {
   }
 ```
 
-# Tree To Flat
+# Tree To Flatten
 ```
-const treetoflat = (items) => (
+const treeToFlat = (items) => (
   items.reduce((acc, val) => {
     if (val.children && val.children.length) {
       acc.push(val);
