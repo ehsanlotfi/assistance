@@ -1,20 +1,24 @@
 
 # Flat To Tree
 ```
-function flattotree(arr, parent_id) {
-    var out = []
-    for(var i in arr) {
-        if(arr[i].parent == parent_id) {
-            var children = getNestedChildren(arr, arr[i].id)
+function flatToTree(list, entity_key, parent_key) {
+    var map = {}, node, roots = [], i;
 
-            if(children.length) {
-                arr[i].children = children
-            }
-            out.push(arr[i])
-        }
+    for (i = 0; i < list.length; i += 1) {
+      map[list[i][entity_key]] = i;
+      list[i].children = [];
     }
-    return out
-}
+
+    for (i = 0; i < list.length; i += 1) {
+      node = list[i];
+      if (node[parent_key]) {
+        list[map[node[parent_key]]].children.push(node);
+      } else {
+        roots.push(node);
+      }
+    }
+    return roots;
+  }
 ```
 
 # Tree To Flat
