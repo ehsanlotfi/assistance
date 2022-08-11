@@ -23,13 +23,18 @@ function flatToTree(list, entity_key, parent_key) {
 
 # Tree To Flatten
 ```
-const treeToFlat = (items) => (
+const flattenDeep = (items, path = "", index = 0) => (
   items.reduce((acc, val) => {
     if (val.children && val.children.length) {
+      val.path = path || null;
+      val.treeIndex = ++index;
       acc.push(val);
-      return acc.concat(flattenDeep(val.children));
+      return acc.concat(flattenDeep(val.children, val.treeIndex, index));
     }
+    val.path = path;
+    val.treeIndex = ++index;
     return acc.concat(val);
   }, [])
 );
+
 ```
