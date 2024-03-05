@@ -1,7 +1,7 @@
 ## request forkjoin response single
 ```
 const req: Observable[] = []
- from().pipe(
+ from(req).pipe(
     mergeMap((observable, index) => observable.pipe(
       map(value => ({ value, index })),
     )),
